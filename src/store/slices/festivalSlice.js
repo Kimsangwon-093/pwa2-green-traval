@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { festivalIndex } from "../thunks/festivalThunk.js";
-
 const festivalSlices = createSlice({
   name: "festivalSlices",
   initialState: {
     list: [], // 페스티벌 리스트
-    page: 1, // 현재 페이지 번호
+    page: 0, // 현재 페이지 번호
     scrollEventFlg: true,
   },
   reducers: {
@@ -29,17 +28,13 @@ const festivalSlices = createSlice({
         if (action.payload.items !== "") {
           state.list = [...state.list, ...action.payload.items.item];
           state.page = action.payload.pageNo;
+          localStorage.setItem("festivalList", JSON.stringify(state.list));
           state.scrollEventFlg = true;
         } else {
           state.scrollEventFlg = false;
         }
       })
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          console.log("처리중입니다.");
-        }
-      )
+
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {

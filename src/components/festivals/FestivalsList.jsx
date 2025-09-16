@@ -16,28 +16,28 @@ function FestivalsList() {
   const dispatch = useDispatch();
 
   const festivalList = useSelector((state) => state.festival.list);
-  const page = useSelector((state) => state.festival.page);
   const scrollEventFlg = useSelector((state) => state.festival.scrollFlg);
+
   useEffect(() => {
-    // window.addEventListener("scroll", addNextPage);
-    dispatch(festivalIndex(page));
+    window.addEventListener("scroll", addNextPage);
+    dispatch(festivalIndex());
 
     return () => {
-      // window.removeEventListener("scroll", addNextPage);
+      window.removeEventListener("scroll", addNextPage);
     };
-  }, [page, scrollEventFlg]);
+  }, []);
 
   // 다음 페이지 가져오기
   function addNextPage() {
     // 스크롤 관련 처리
     const docHeight = document.documentElement.scrollHeight; // 문서의 y축 총 길이
     const winHeight = window.innerHeight; //윈도우 Y축 총 길이
-    const nowHeight = window.scrollY; // 현재 스크롤의 Y축 위치
+    const nowHeight = Math.ceil(window.scrollY); // 현재 스크롤의 Y축 위치
     const viewHeight = docHeight - winHeight; // 스크롤을 끝까지 내렸을 때의 Y축 위치
 
     if (viewHeight * 0.8 <= nowHeight && scrollEventFlg) {
       dispatch(setScrollEventFlg(false));
-      dispatch(festivalIndex(page + 1));
+      dispatch(festivalIndex());
     }
     // dispatch(festivalIndex(page + 1));
   }
