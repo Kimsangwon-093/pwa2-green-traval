@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { festivalIndex } from "../thunks/festivalThunk.js";
+import { localStorageUtil } from "../../utils/localStorageUtil.js";
 const festivalSlices = createSlice({
   name: "festivalSlices",
   initialState: {
@@ -25,16 +26,17 @@ const festivalSlices = createSlice({
         //   state.list = [...state.list, ...action.payload.items.item];
         //   state.page = action.payload.pageNo;
         // }
-        if (action.payload.items !== "") {
+        if (action.payload.items?.item) {
           state.list = [...state.list, ...action.payload.items.item];
           state.page = action.payload.pageNo;
-          localStorage.setItem("festivalList", JSON.stringify(state.list));
           state.scrollEventFlg = true;
+          localStorageUtil.setFestivalList(state.list);
+          localStorageUtil.setFestivalPage(state.page);
+          localStorageUtil.setFestivalScrollFlg(state.scrollEventFlg);
         } else {
           state.scrollEventFlg = false;
         }
       })
-
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, action) => {

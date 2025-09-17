@@ -8,12 +8,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./FestivalsList.css";
 import { useEffect } from "react";
-import { setScrollEventFlg } from "../../store/slices/festivalSlice.js";
 import { festivalIndex } from "../../store/thunks/festivalThunk.js";
 import { dateFormatter } from "../../utils/dateFormmater.js";
+import { setScrollEventFlg } from "../../store/slices/festivalSlice.js";
+import { useNavigate } from "react-router-dom";
+import { setFestivalInfo } from "../../store/slices/festivalShowSlice.js";
 
 function FestivalsList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const festivalList = useSelector((state) => state.festival.list);
   const scrollEventFlg = useSelector((state) => state.festival.scrollFlg);
@@ -35,11 +38,17 @@ function FestivalsList() {
     const nowHeight = Math.ceil(window.scrollY); // 현재 스크롤의 Y축 위치
     const viewHeight = docHeight - winHeight; // 스크롤을 끝까지 내렸을 때의 Y축 위치
 
-    if (viewHeight * 0.8 <= nowHeight && scrollEventFlg) {
+    if (viewHeight === nowHeight && scrollEventFlg) {
       dispatch(setScrollEventFlg(false));
       dispatch(festivalIndex());
     }
     // dispatch(festivalIndex(page + 1));
+  }
+
+  //상세페이지로 이동
+  function redirectShow(item){
+    dispatch(setFestivalInfo(item));
+    navigate(`/festivals/${item.contentid}`);
   }
 
   return (
@@ -48,7 +57,7 @@ function FestivalsList() {
         {festivalList.length > 0 &&
           festivalList.map((item) => {
             return (
-              <div className="card" key={item.contentid + item.createdtime}>
+              <div className="card" onClick={() =>{redirectShow(item)}} key={item.contentid + item.createdtime}>
                 <div
                   className="card-img"
                   style={{ backgroundImage: `url('${item.firstimage}')` }}

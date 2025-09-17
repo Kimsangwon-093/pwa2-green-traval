@@ -8,7 +8,7 @@ const festivalIndex = createAsyncThunk(
   async (arg, thunkAPI) => {
     const state = thunkAPI.getState();
     const pastDateYMD = dateFormatter.formatDateToYMD(
-      dateCalculater.getpastDate(1000 * 60 * 60 * 24 * 30)
+      dateCalculater.getPastDate(1000 * 60 * 60 * 24 * 30)
     );
     const url = `${axiosConfig.BASE_URL}/searchFestival2`;
     const config = {
