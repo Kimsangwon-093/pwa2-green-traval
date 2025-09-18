@@ -4,6 +4,8 @@ import Header from "./components/common/Header.jsx";
 import { useEffect } from "react";
 import { localStorageUtil } from "./utils/localStorageUtil.js";
 import { dateFormatter } from "./utils/dateFormmater.js";
+import BeforeInstallPrompt from "./components/BeforeInstallPrompt.jsx";
+
 function App() {
   useEffect(() => {
     // TODO
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <>
+    <BeforeInstallPrompt />
       <Header></Header>
       <main>
         <Outlet />
