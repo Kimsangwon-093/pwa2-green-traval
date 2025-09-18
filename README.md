@@ -1,4 +1,4 @@
-** Git 호스트와 연동 **
+<!-- ** Git 호스트와 연동 **
 0. 프로젝트 폴더까지 이동
 1. git 초기화 : git init
 2. 기본 브런치 변경 : git branch -M main
@@ -26,4 +26,31 @@ git push -u  [리모트명]  [브런치명]
 
 ** 브런치 삭제 **
 1. 로컬에 브런치 삭제 : git branch -d [브런치명]
-2. 호스트 브런치 삭제 : [리모트명] -d [삭제할 브런치명] 
+2. 호스트 브런치 삭제 : [리모트명] -d [삭제할 브런치명]  -->
+
+npm i react-router-dom @reduxjs/toolkit react-redux redux-thunk axios
+
+** PWA 적용 **
+1. 설치
+    npm i -D vite-plugin-pwa
+
+2. Mainfest 설정
+    - `vite.config.js`에 PWA Mainfest 설정을 추가
+    - 아이콘 이미지는 아래 사이즈 별로 필요
+        - 180 × 180(IOS), 192 × 192(web | Android), 512 × 512(web | Android)
+
+3. 서비스 워커 작성
+    - `src/sw.js`, `src/swRegister.js` 파일 생성
+
+
+4. `main.jsx`에 서비스 워커 레지스터 추가
+
+
+5. IOS 대응을 위해 `index.html`에 meta데이터 설정(IOS 대응 및 Manifest 기본 설정)
+
+
+6. 위 설정 완료 후 빌드 
+    npm run build
+
+7. 빌드한 것으로 동작하는 내장서버 실행
+    npm run preview
