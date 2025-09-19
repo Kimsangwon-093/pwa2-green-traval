@@ -18,7 +18,7 @@ git push -u  [리모트명]  [브런치명]
 ** 브런치 생성 **
 1. 브런치 생성(로컬) : git branch [브런치명]
 2. 브런치 호스트에 push(호스트) : git push -u  [리모트명] [새로운 브런치명]
-3. 브런치 확인(-a : 로컬과 호스트 모두 확인) : git branch -a [브런치명]
+3. 브런치 확인(-a : 로컬과 호스트 모두 확인) : git branch -a
 
 ** 브런치 Merge **
 1. 기본 브런치로 변경 : git checkout[기본 브런치 명]
@@ -26,7 +26,7 @@ git push -u  [리모트명]  [브런치명]
 
 ** 브런치 삭제 **
 1. 로컬에 브런치 삭제 : git branch -d [브런치명]
-2. 호스트 브런치 삭제 : [리모트명] -d [삭제할 브런치명]  -->
+2. 호스트 브런치 삭제 : git push [리모트명] -d [삭제할 브런치명]  -->
 
 npm i react-router-dom @reduxjs/toolkit react-redux redux-thunk axios
 

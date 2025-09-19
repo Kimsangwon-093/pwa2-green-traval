@@ -1,0 +1,53 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { localStorageUtil } from "../../utils/localStorageUtil.js";
+import { stayIndex } from "../thunks/stayThunk.js";
+
+const staySlices = createSlice({
+  name: "staySlices",
+  initialState: {
+    list: [], // 페스티벌 리스트
+    page: 0, // 현재 페이지 번호
+    scrollEventFlg: true,
+  },
+  reducers: {
+    setScrollEventFlg: (state, action) => {
+      state.scrollEventFlg = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(stayIndex.fulfilled, (state, action) => {
+        // console.log(action.payload, action.type);
+        // if (state.list !== null) {
+        //   // 페이지 추가 처리
+        //   state.list = [...state.list, ...action.payload.items.item];
+        //   state.page = action.payload.pageNo;
+        // } else {
+        //   // 초기 페이지 처리
+        //   state.list = [...state.list, ...action.payload.items.item];
+        //   state.page = action.payload.pageNo;
+        // }
+        if (action.payload.items?.item) {
+          state.list = [...state.list, ...action.payload.items.item];
+          state.page = action.payload.pageNo;
+          state.scrollEventFlg = true;
+          localStorageUtil.setStayList(state.list);
+          localStorageUtil.setStayPage(state.page);
+          localStorageUtil.setStayScrollFlg(state.scrollEventFlg);
+        } else {
+          state.scrollEventFlg = false;
+        }
+      })
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state, action) => {
+          console.error("에러처리", action.error);
+        }
+      );
+  },
+
+  });
+
+export const { setScrollEventFlg } = staySlices.actions;
+
+export default staySlices.reducer;
