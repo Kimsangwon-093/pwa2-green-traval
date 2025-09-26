@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { localStorageUtil } from "../../utils/localStorageUtil.js";
 import { stayIndex } from "../thunks/stayThunk.js";
-
+import { localStorageUtil } from "../../utils/localStorageUtil.js";
 const staySlices = createSlice({
   name: "staySlices",
   initialState: {
@@ -17,16 +16,6 @@ const staySlices = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(stayIndex.fulfilled, (state, action) => {
-        // console.log(action.payload, action.type);
-        // if (state.list !== null) {
-        //   // 페이지 추가 처리
-        //   state.list = [...state.list, ...action.payload.items.item];
-        //   state.page = action.payload.pageNo;
-        // } else {
-        //   // 초기 페이지 처리
-        //   state.list = [...state.list, ...action.payload.items.item];
-        //   state.page = action.payload.pageNo;
-        // }
         if (action.payload.items?.item) {
           state.list = [...state.list, ...action.payload.items.item];
           state.page = action.payload.pageNo;
@@ -45,9 +34,7 @@ const staySlices = createSlice({
         }
       );
   },
-
-  });
+});
 
 export const { setScrollEventFlg } = staySlices.actions;
-
 export default staySlices.reducer;

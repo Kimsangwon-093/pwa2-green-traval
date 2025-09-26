@@ -3,7 +3,7 @@ import './Header.css';
 function Header() {
   return(
     <>
-      <h1>Green Traval</h1>
+      <h1>Hell Trip</h1>
     </>
   )
 }

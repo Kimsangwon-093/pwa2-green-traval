@@ -1,11 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
 import'./FestivalShow.css';
-import { useDispatch, useSelector } from "react-redux";
-import { dateFormatter } from "../../utils/dateFormmater.js";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { setFestivalInfo } from "../../store/slices/festivalShowSlice";
+import { dateFormatter } from "../../utils/dateFormmater.js";
 
-function FestivalShow(){
+function FestivalShow() {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +24,8 @@ function FestivalShow(){
     <>
     { festivalInfo.title && 
      <div className="show-container">
-       <button type="button" onClick={redirectBack}>되돌아가기</button>
+        <img className="Back-btn" onClick={redirectBack} src ='/base/HellTrip-Backbtn.png' alt="대문" />
+       {/* <button type="button" onClick={redirectBack}>되돌아가기</button> */}
        <h1 className="show-title">{festivalInfo.title}</h1>
        <p className="show-period">{dateFormatter.withHyphenYMD(festivalInfo.eventstartdate)}~{dateFormatter.withHyphenYMD(festivalInfo.eventenddate)}</p>
        <img src={festivalInfo.firstimage} alt={`${festivalInfo.title}사진`} className="show-img "/>

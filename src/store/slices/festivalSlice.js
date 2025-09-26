@@ -16,16 +16,6 @@ const festivalSlices = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(festivalIndex.fulfilled, (state, action) => {
-        // console.log(action.payload, action.type);
-        // if (state.list !== null) {
-        //   // 페이지 추가 처리
-        //   state.list = [...state.list, ...action.payload.items.item];
-        //   state.page = action.payload.pageNo;
-        // } else {
-        //   // 초기 페이지 처리
-        //   state.list = [...state.list, ...action.payload.items.item];
-        //   state.page = action.payload.pageNo;
-        // }
         if (action.payload.items?.item) {
           state.list = [...state.list, ...action.payload.items.item];
           state.page = action.payload.pageNo;
@@ -47,5 +37,4 @@ const festivalSlices = createSlice({
 });
 
 export const { setScrollEventFlg } = festivalSlices.actions;
-
 export default festivalSlices.reducer;

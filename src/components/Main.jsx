@@ -5,8 +5,10 @@ function Main(){
   const navigate = useNavigate();
   return(
     <>
-      <img className="title-img" onClick={() => { navigate('/festivals') }} src ='/base/image_1.png' alt="대문" />
-      <img className="Inn-img" onClick={() => { navigate('/stays') }} src ='/base/Inn_01.png' alt="대문" />
+      <div className='main-container'>
+        <img className="main-festiva-img" onClick={() => { navigate('/festivals') }} src ='/base/festival-btn.png' alt="대문" />
+        <img className="main-Inn-img" onClick={() => { navigate('/stays') }} src ='/base/stay-btn.png' alt="대문" />
+      </div>
     </>
   )
 }

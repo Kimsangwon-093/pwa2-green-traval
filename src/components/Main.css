@@ -1,14 +1,10 @@
-.title-img {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 500px;
-  padding-bottom: 20px;
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  gap: 10px;
 }
 
-.Inn-img{
-  display: block;
-  margin: 0 auto;
+.main-container > img {
   width: 100%;
-  max-width: 500px;
+  display: block;
 }

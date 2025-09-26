@@ -4,8 +4,20 @@
   box-sizing: border-box;
 }
 
+/* css에서의 변수선언 */
+
+:root {
+  /* 변수명은 무조건 `--변수명`로 시작 */
+  --personal-color-1: #000;
+  --personal-color-2: #fff;
+}
+
 body{
-  background-color: #000;
+  /* 변수 사용:var(변수명) 호출 */
+  background-image: url('/base/Beach.PNG');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 #root{

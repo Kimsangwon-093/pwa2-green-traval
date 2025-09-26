@@ -3,6 +3,7 @@ import axiosConfig from "../../routes/axiosConfig";
 import axios from "axios";
 import { dateCalculater } from "../../utils/dateCalculater.js";
 import { dateFormatter } from "../../utils/dateFormmater.js";
+
 const festivalIndex = createAsyncThunk(
   "festivalSlice/festivalIndex",
   async (arg, thunkAPI) => {
@@ -13,7 +14,8 @@ const festivalIndex = createAsyncThunk(
     const url = `${axiosConfig.BASE_URL}/searchFestival2`;
     const config = {
       params: {
-        serviceKey: axiosConfig.SERVICE_KEY,
+        // serviceKey: axiosConfig.SERVICE_KEY,
+        serviceKey: import.meta.env.VITE_SERVICE_KEY,
         MobileOS: axiosConfig.MOBILE_OS,
         MobileApp: axiosConfig.MOBILE_APP,
         _type: axiosConfig.TYPE,
